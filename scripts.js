@@ -23,6 +23,16 @@ function openMenu(evt) {
         bars[2].classList.remove('bottom');
         navSwitch = 0;
     }
-
 }
 
+// navigation menu item events
+// on hover
+navigation.addEventListener('mouseover', function(evt) {
+    evt.target.style.color = '#FDCB56';
+});
+// on exit hover
+navigation.addEventListener('mouseout', function(evt) {
+    evt.target.style.color = '#FFFCF1';
+});
+
+// on click load new board
