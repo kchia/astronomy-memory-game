@@ -1,0 +1,79 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #222222;
+    color: #FFFCF1;
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 2fr) 1fr;
+    grid-template-rows: 1fr repeat(2, 2fr) 1fr;
+    grid-gap: 10px;
+    place-items: stretch / center;
+    margin: 0;
+}
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+h1 {
+    text-transform: uppercase;
+    margin: 0.8em;
+    letter-spacing: 1px;
+}
+header {
+    grid-column: 1 / span 4;
+}
+nav {
+    grid-column: 5 / span 2;
+    grid-row: 1fr / span 4;
+    background: #222222;
+    margin: 0;
+    padding: 5% 2% 5%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* not sure I need height, but using for vertical layout currently */
+    z-index: 1;
+    border: 10px solid #FFFCF1;
+}
+.hamburger {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    margin: 20px;
+}
+.hamburger div {
+    width: 25px;
+    height: 4px;
+    background: #FFFCF1;
+    margin: 0 0 6px;
+    border-radius: 1px;
+}
+.hamburger .top {
+    transform: rotate(45deg);
+}
+.hamburger .bottom {
+    transform: rotate(-45deg);
+    position: relative;
+    top: -20px;
+}
+.hamburger .middle {
+    opacity: 0;
+}
+nav ul {
+    padding: 0;
+    margin: 20px;
+    text-align: right;
+}
+nav ul li {
+    display: block;
+}
+nav ul li a {
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 2.25em;
+    letter-spacing: .25px;
+    color: inherit;
+}
+nav ul li a .mini {
+    font-size: 1em;
+}
