@@ -4,13 +4,19 @@ body {
     color: #FFFCF1;
     display: grid;
     grid-template-columns: 1fr repeat(4, 2fr) 1fr;
-    grid-template-rows: 1fr repeat(2, 2fr) 1fr;
-    grid-gap: 10px;
+    grid-template-rows: 1fr 10fr;
+    grid-gap: 1rem;
     place-items: stretch / center;
     margin: 0;
 }
 p {
     font-family: 'Montserrat', sans-serif;
+    margin: 0 0 10px;
+}
+p a {
+    text-decoration: none;
+    color: #FDCB56;
+    font-weight: 700;
 }
 h1 {
     text-transform: uppercase;
@@ -20,24 +26,12 @@ h1 {
 header {
     grid-column: 1 / span 4;
 }
-nav {
-    grid-column: 5 / span 2;
-    grid-row: 1fr / span 4;
-    background: #222222;
-    margin: 0;
-    padding: 5% 2% 5%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    /* not sure I need height, but using for vertical layout currently */
-    z-index: 1;
-    border: 10px solid #FFFCF1;
-}
 .hamburger {
     position: absolute;
     right: 20px;
     top: 20px;
     margin: 20px;
+    z-index: 3;
 }
 .hamburger div {
     width: 25px;
@@ -45,21 +39,34 @@ nav {
     background: #FFFCF1;
     margin: 0 0 6px;
     border-radius: 1px;
+    transition-duration: .5s;
+    /* Transition Duration from https://medium.com/@kswanie21/css3-animations-with-transitions-transforms-5a9c01e5efb5 */
 }
 .hamburger .top {
     transform: rotate(45deg);
+    position: relative;
+    top: 10px;
 }
 .hamburger .bottom {
     transform: rotate(-45deg);
     position: relative;
-    top: -20px;
+    top: -10px;
 }
 .hamburger .middle {
     opacity: 0;
 }
+nav {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 3;
+    background: #222222;
+    z-index: 1;
+    opacity: 0;
+    transition-duration: .4s;
+    border: 10px solid #FFFCF1;
+}
 nav ul {
     padding: 0;
-    margin: 20px;
+    margin: 70px 35px 0;
     text-align: right;
 }
 nav ul li {
@@ -76,4 +83,53 @@ nav ul li a {
 }
 nav ul li a .mini {
     font-size: 1em;
+}
+main {
+    grid-row: 2 / span 2;
+    grid-column: 2 / span 4;
+    display: grid;
+    grid-template-rows: 6fr 1fr;
+    grid-template-columns: 1fr;
+}
+.game-board {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 4;
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(2, 5fr);
+}
+.award {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 4;
+    margin: 12px;
+    padding: 0 40px;
+    background: #222222;
+    opacity: 0;
+    border: 10px solid #FFFCF1;
+    z-index: 2;
+}
+.card {
+    align-self: stretch;
+    border: 10px solid #FFFCF1;
+    margin: 12px;
+    text-align: center;
+}
+.card img {
+    width: 85%;
+    padding: 20% 0 0;
+}
+.score {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    text-align: center;
+}
+.score h2, h3 {
+    display: inline-block;
+    margin-right: 10%;
+}
+.score h3:nth-child(3) {
+    margin-right: 5%;
+}
+h2 {
+    text-transform: uppercase;
 }
