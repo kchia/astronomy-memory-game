@@ -114,6 +114,12 @@ main {
     margin: 12px;
     text-align: center;
 }
+.back {
+    background: url(images/card-back.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .card img {
     width: 85%;
     padding: 20% 0 0;
