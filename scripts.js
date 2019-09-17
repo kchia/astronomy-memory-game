@@ -30,13 +30,13 @@ function openMenu(evt) {
     evt.preventDefault();
     
     if (navSwitch === 0) {
-        navigation.style.opacity = '1';
+        navigation.style.display = 'initial';
         bars[0].classList.add('top');
         bars[1].classList.add('middle');
         bars[2].classList.add('bottom');
         navSwitch = 1;
     } else {
-        navigation.style.opacity = '0';
+        navigation.style.display = 'none';
         bars[0].classList.remove('top');
         bars[1].classList.remove('middle');
         bars[2].classList.remove('bottom');
@@ -66,8 +66,8 @@ function loadBoard(arrayQuery) {
     const board = games[arrayQuery];
     for (let i = 0; i < 8; i += 2) {
         let randomIndex = Math.floor(Math.random()*board.length);
-        console.log(board[randomIndex]);
-        console.log(board[randomIndex]);
+        console.log(board[randomIndex].name);
+        console.log(board[randomIndex].img);
     }
 }
 

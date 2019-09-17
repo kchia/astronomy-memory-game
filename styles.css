@@ -60,7 +60,7 @@ nav {
     grid-row: 1 / span 3;
     background: #222222;
     z-index: 1;
-    opacity: 0;
+    display: none;
     transition-duration: .4s;
     border: 10px solid #FFFCF1;
 }
