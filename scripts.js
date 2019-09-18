@@ -6,7 +6,7 @@ const board = document.querySelector('#gameBoard');
 // gameBoard arrays
 let cardsOnBoard = [];
 let inPlay = [];
-let players = ['playerOne', 'playerTwo'];
+let players = ['playerOne', 'playerTwo']; // possibly change to class for refactor
 let playerOne = 0;
 let playerTwo = 0;
 
@@ -148,23 +148,43 @@ board.addEventListener('click', (evt) => {
     evt.target.appendChild(frontImg);
     evt.target.appendChild(frontTitle);
     // check for match
-    // checkMatch();
+    if(inPlay.length === 2) {
+        checkMatch();
+    }
 });
 
-function checkMatch (evt) {
-    if (inPlay.length === 2 && inPlay[0] === inPlay[1]) {
+function checkMatch () {
+    const firstIndex = inPlay[0];
+    const secondIndex = inPlay[1];
+    const firstCard = cardsOnBoard[firstIndex].name;
+    const secondCard = cardsOnBoard[secondIndex].name;
+
+    console.log(firstCard);
+    console.log(secondCard);
+    
+    if (firstCard === secondCard) {
         // if match iterate point for current player & go again
-        playerOne++
-        document.getElementById('score').innerText 
+        // let matcher = players[0];
+        // //  = matcher++;
+        // document.getElementById(matcher).innerText = 
+        console.log('MATCH');
+        turn();
         // win scenario   
-    } else if (inPlay.length === 2 && inPlay[0] != inPlay[1]) {
+    } else if (firstCard != secondCard) {
         // if no match go to next player
-        let prevPlayer = players.shift();
-        players.push(prevPlayer);
+        console.log('NO MATCH');
+        turn();
         // and flip back
-        // remove board.children.children
-        // set board children style.background to cardBack
+        // flipBack();
     }
+}
+
+function turn() {
+    // switch next player to first array
+    let prevPlayer = players.shift();
+    players.push(prevPlayer);
+    // clear in play array
+    inPlay = [];
 }
 
 function win() {
@@ -181,5 +201,20 @@ function clearBoard(){
     cardsOnBoard = [];
 }
 
+function flipBack() {
+    // get images & titles as nodeList
+    let clearCard = board.querySelectorAll('img, h3');
+    
+    // remove images & titles
+    // clearCard.parentNode.removeChild(clearCard);
+
+    // get card divs
+    for (let card in board) {
+        // set backgrounds for all board > divs to 'back'
+        if (card.classList != 'card back') {
+            card.classList.add('back');
+        }
+    }
+}
 // default start board load
 loadBoard('planets');
