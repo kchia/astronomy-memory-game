@@ -94,10 +94,18 @@ navigation.addEventListener('click', function(evt) { // on click load new board
 function loadBoard(arrayQuery) {
     // set new board
     const newBoard = games[arrayQuery];
-    for (let i = 0; cardsOnBoard.length < 8; i += 2) {
+    // create new card set
+    for (let i = 0; cardsOnBoard.length < 8; i++) {
         let randomIndex = Math.floor(Math.random()*newBoard.length);
-        // console.log(newBoard[randomIndex].name);
-        cardsOnBoard.push(newBoard[randomIndex], newBoard[randomIndex]);
+        // filtered array for testing if card pair already exists
+        let testArray = cardsOnBoard.filter(card => card.name === newBoard[randomIndex].name);
+        // first pair auto populates
+        if (cardsOnBoard.length < 0) {
+            cardsOnBoard.push(newBoard[randomIndex], newBoard[randomIndex]);
+        // subsequent pairs test against testArray
+        } else if (testArray.length <= 0) {
+            cardsOnBoard.push(newBoard[randomIndex], newBoard[randomIndex]);
+        }
     }
     // shuffle cardsOnBoard
     shuffle(cardsOnBoard);
@@ -129,6 +137,16 @@ function shuffle(array) {
         array[i] = array[randomIndex];
         array[randomIndex] = upNext;
     }
+}
+
+// clear gameBoard in View & cardsOnBoard array
+function clearBoard(){
+    // empty dom game-board div
+    while(board.firstElementChild) {
+        board.removeChild(board.firstElementChild)
+    }
+    // empty gameBoard array
+    cardsOnBoard = [];
 }
 
 // flip card
@@ -170,7 +188,7 @@ function checkMatch () {
         document.getElementById(`${players[0].id}`).innerHTML = `${players[0].player}: ${players[0].score+=1}`;
         console.log('MATCH');
         turn();
-        // win scenario   
+        // check win scenario
     } else if (firstCard != secondCard) {
         // if no match go to next player
         console.log('NO MATCH');
@@ -195,18 +213,9 @@ function win() {
 // player with most points wins
 }
 
-function clearBoard(){
-    // empty dom game-board div
-    while(board.firstElementChild) {
-        board.removeChild(board.firstElementChild)
-    }
-    // empty gameBoard array
-    cardsOnBoard = [];
-}
-
 function flipBack() {
     // get images & titles as nodeList
-    let clearCard = board.querySelectorAll('img, h3');
+    let clearCards = board.querySelectorAll('img, h3');
     
     // remove images & titles
     // clearCard.parentNode.removeChild(clearCard);
