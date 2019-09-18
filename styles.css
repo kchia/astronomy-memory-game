@@ -140,3 +140,6 @@ main {
 h2 {
     text-transform: uppercase;
 }
+.current-player {
+    color: #FDCB56;
+}

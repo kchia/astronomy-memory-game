@@ -202,8 +202,9 @@ function turn() {
     // switch next player to first array
     let prevPlayer = players.shift();
     players.push(prevPlayer);
-    // emphasize new current player on score board
-    
+    // switch player emphasize on score board
+    document.getElementById(`${players[0].id}`).classList.add('current-player');
+    document.getElementById(`${players[1].id}`).classList.remove('current-player');
     // clear in play array
     inPlay = [];
 }
@@ -218,16 +219,17 @@ function flipBack() {
     let clearCards = board.querySelectorAll('img, h3');
     
     // remove images & titles
-    // clearCard.parentNode.removeChild(clearCard);
+    // clearCards.parentNode.removeChild(clearCard);
 
-    // get card divs
-    for (let card in board) {
-        // set backgrounds for all board > divs to 'back'
-        if (card.classList != 'card back') {
-            card.classList.add('back');
-        }
-    }
+    // // get card divs
+    // for (let card in board) {
+    //     // set backgrounds for all board > divs to 'back'
+    //     if (card.classList != 'card back') {
+    //         card.classList.add('back');
+    //     }
+    // }
 }
+
 // default start board load
 loadBoard('planets');
 console.log(cardsOnBoard);
