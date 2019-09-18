@@ -190,10 +190,9 @@ function checkMatch () {
     // if no match
     } else if (firstCard != secondCard) {
         // and flip back
-        flipBack();
-        // go to next player
+        setTimeout(flipBack, 2000); 
+        // Thanks to Kenny for providing W3S starting point for setTimeout review
         console.log('NO MATCH');
-        turn();
     }
 }
 
@@ -229,6 +228,9 @@ function flipBack() {
     // add card back class to classList
     firstCard.classList.add('back');
     secondCard.classList.add('back');
+
+    // go to next player
+    turn();
 }
 
 // default start board load
