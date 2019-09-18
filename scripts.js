@@ -143,7 +143,7 @@ function shuffle(array) {
 function clearBoard(){
     // empty dom game-board div
     while(board.firstElementChild) {
-        board.removeChild(board.firstElementChild)
+        board.removeChild(board.firstElementChild);
     }
     // empty gameBoard array
     cardsOnBoard = [];
@@ -180,21 +180,20 @@ function checkMatch () {
     const firstCard = cardsOnBoard[firstIndex].name;
     const secondCard = cardsOnBoard[secondIndex].name;
 
-    console.log(firstCard);
-    console.log(secondCard);
-    
     if (firstCard === secondCard) {
         // if match iterate point for current player & go again
         document.getElementById(`${players[0].id}`).innerHTML = `${players[0].player}: ${players[0].score+=1}`;
         console.log('MATCH');
         turn();
         // check win scenario
+        // win();
+    // if no match
     } else if (firstCard != secondCard) {
-        // if no match go to next player
+        // and flip back
+        flipBack();
+        // go to next player
         console.log('NO MATCH');
         turn();
-        // and flip back
-        // flipBack();
     }
 }
 
@@ -215,19 +214,21 @@ function win() {
 }
 
 function flipBack() {
-    // get images & titles as nodeList
-    let clearCards = board.querySelectorAll('img, h3');
+    // find parent elements based on current selections
+    let firstCard = board.children[`${inPlay[0]}`];
+    let secondCard = board.children[`${inPlay[1]}`];
     
-    // remove images & titles
-    // clearCards.parentNode.removeChild(clearCard);
+    // remove images & titles children
+    while(firstCard.firstElementChild) {
+        firstCard.removeChild(firstCard.firstElementChild);
+    }
+    while(secondCard.firstElementChild) {
+        secondCard.removeChild(secondCard.firstElementChild);
+    }
 
-    // // get card divs
-    // for (let card in board) {
-    //     // set backgrounds for all board > divs to 'back'
-    //     if (card.classList != 'card back') {
-    //         card.classList.add('back');
-    //     }
-    // }
+    // add card back class to classList
+    firstCard.classList.add('back');
+    secondCard.classList.add('back');
 }
 
 // default start board load
