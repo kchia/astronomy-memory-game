@@ -96,7 +96,7 @@ main {
     grid-column: 1 / span 4;
     display: grid;
     grid-template-columns: repeat(4, 2fr);
-    grid-template-rows: repeat(2, 5fr);
+    grid-template-rows: repeat(2, 4fr);
 }
 .award {
     grid-row: 1 / span 1;
@@ -142,4 +142,7 @@ h2 {
 }
 .current-player {
     color: #FDCB56;
+}
+.sub-menu {
+    opacity: .8;
 }

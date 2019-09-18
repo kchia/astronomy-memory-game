@@ -152,25 +152,28 @@ function clearBoard(){
 // flip card
 board.addEventListener('click', (evt) => {
     evt.preventDefault();
-    // get array location via data-id as set in createCards function
-    const card = evt.target.getAttribute('id');
-    // create img and title elements
-    let frontImg = document.createElement('img');
-    let frontTitle = document.createElement('h2');
-    // set img and title attributes using data-id from getAttribute^
-    frontImg.setAttribute('src', cardsOnBoard[card].img);
-    frontTitle.innerHTML = cardsOnBoard[card].name;
-    // push new card to inPlay
-    inPlay.push(card);
-    // flip card/change image
-    // remove bg
-    evt.target.classList.remove('back');
-    // add img and title
-    evt.target.appendChild(frontImg);
-    evt.target.appendChild(frontTitle);
-    // check for match
-    if(inPlay.length === 2) {
-        checkMatch();
+    // Thanks to Kenny for the if statement wrapper idea to stop console log error that didn't affect the game but was annoying me
+    if(evt.target.classList.value === 'card back') {
+        // get array location via data-id as set in createCards function
+        const card = evt.target.getAttribute('id');
+        // create img and title elements
+        let frontImg = document.createElement('img');
+        let frontTitle = document.createElement('h2');
+        // set img and title attributes using data-id from getAttribute^
+        frontImg.setAttribute('src', cardsOnBoard[card].img);
+        frontTitle.innerHTML = cardsOnBoard[card].name;
+        // push new card to inPlay
+        inPlay.push(card);
+        // flip card/change image
+        // remove bg
+        evt.target.classList.remove('back');
+        // add img and title
+        evt.target.appendChild(frontImg);
+        evt.target.appendChild(frontTitle);
+        // check for match
+        if(inPlay.length === 2) {
+            checkMatch();
+        }
     }
 });
 
@@ -184,9 +187,10 @@ function checkMatch () {
         // if match iterate point for current player & go again
         document.getElementById(`${players[0].id}`).innerHTML = `${players[0].player}: ${players[0].score+=1}`;
         console.log('MATCH');
-        turn();
         // check win scenario
-        // win();
+        win();
+        // change player, could turn this off for more of a challenge
+        turn();
     // if no match
     } else if (firstCard != secondCard) {
         // and flip back
@@ -205,11 +209,6 @@ function turn() {
     document.getElementById(`${players[1].id}`).classList.remove('current-player');
     // clear in play array
     inPlay = [];
-}
-
-function win() {
-// all cards flipped and matched
-// player with most points wins
 }
 
 function flipBack() {
@@ -231,6 +230,24 @@ function flipBack() {
 
     // go to next player
     turn();
+}
+
+function win() {
+    let boardChildren = [...board.children]; 
+    // Thanks Kenny for showing me HTMLcollection to Array using spread operator
+    let testArray = boardChildren.filter(card => `${card.classList.value}` === 'card');
+    
+    // all cards flipped and matched
+    if (testArray.length === cardsOnBoard.length) {
+        // player with most points wins
+        if (players[0].score > players[1].score) {
+            console.log(`${players[0].player} WINS!`);
+        } else if (players[1].score > players[0].score) {
+            console.log(`${players[1].player} WINS!`);
+        } else if (players[0].score === players[1].score) {
+            console.log(`It's a tie!`);
+        }
+    }    
 }
 
 // default start board load
