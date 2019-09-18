@@ -6,11 +6,14 @@ const board = document.querySelector('#gameBoard');
 // gameBoard arrays
 let cardsOnBoard = [];
 let inPlay = [];
-let players = ['playerOne', 'playerTwo']; // possibly change to class for refactor
-let playerOne = 0;
-let playerTwo = 0;
 
-// games objects > arrays > objects
+// score & turn array
+let players = [
+    { id: 'playerOne', player: 'player 1', score: 0 },
+    { id: 'playerTwo', player: 'player 2', score: 0 }
+]; 
+
+// games objects > arrays > objects; possibly change to class for refactor
 const games = {
     planets: [
         { name: 'Mercury', img: 'images/planets/mercury.png' },
@@ -164,9 +167,7 @@ function checkMatch () {
     
     if (firstCard === secondCard) {
         // if match iterate point for current player & go again
-        // let matcher = players[0];
-        // //  = matcher++;
-        // document.getElementById(matcher).innerText = 
+        document.getElementById(`${players[0].id}`).innerHTML = `${players[0].player}: ${players[0].score+=1}`;
         console.log('MATCH');
         turn();
         // win scenario   
@@ -183,6 +184,8 @@ function turn() {
     // switch next player to first array
     let prevPlayer = players.shift();
     players.push(prevPlayer);
+    // emphasize new current player on score board
+    
     // clear in play array
     inPlay = [];
 }
@@ -218,3 +221,4 @@ function flipBack() {
 }
 // default start board load
 loadBoard('planets');
+console.log(cardsOnBoard);
