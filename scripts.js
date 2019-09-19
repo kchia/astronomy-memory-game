@@ -1,11 +1,13 @@
 // constants for eventListeners and data
 const hamburger = document.querySelector('.hamburger');
 const navigation = document.querySelector('nav');
+const selectGame = document.querySelector('#selectGame');
 const board = document.querySelector('#gameBoard');
 
 // gameBoard arrays
 let cardsOnBoard = [];
 let inPlay = [];
+let arraySelector = '';
 
 // score & turn array
 let players = [
@@ -51,11 +53,11 @@ const games = {
 
 // menu open/close event
 hamburger.addEventListener('click', openMenu);
+// menu switch
 let navSwitch = 0;
 
-function openMenu(evt) {
+function openMenu() {
     const bars = hamburger.children;
-    evt.preventDefault();
     
     if (navSwitch === 0) {
         navigation.style.display = 'initial';
@@ -73,29 +75,34 @@ function openMenu(evt) {
 }
 
 // navigation menu item events
-navigation.addEventListener('mouseover', function(evt) { // on hover
+navigation.addEventListener('mouseover', function(evt) {
     evt.target.style.color = '#FDCB56';
 });
 
-navigation.addEventListener('mouseout', function(evt) { // on exit hover
+navigation.addEventListener('mouseout', function(evt) {
     evt.target.style.color = '#FFFCF1';
 });
 
-navigation.addEventListener('click', function(evt) { // on click load new board
+// on click load new board
+selectGame.addEventListener('click', function(evt) {
     evt.preventDefault();
-
-    let arraySelector = evt.target.innerText;
-    // clear previous board
-    clearBoard();
+    // selection criteria based on nav link text
+    arraySelector = evt.target.innerText;
+    
     // load new board
     loadBoard(arraySelector.toLowerCase());
+    // switch menu state to closed
     openMenu(evt);
+    inPlay = []
 });
 
+// builds new cardsOnBoard array
 function loadBoard(arrayQuery) {
-    // set new board
+    // clear previous board
+    clearBoard();
+    // temp newBoard based on menu selection & 'games' obj
     const newBoard = games[arrayQuery];
-    // create new card set
+    // push unique card pairs to cardsOnBoard array
     for (let i = 0; cardsOnBoard.length < 8; i++) {
         let randomIndex = Math.floor(Math.random()*newBoard.length);
         // filtered array for testing if card pair already exists
@@ -114,6 +121,17 @@ function loadBoard(arrayQuery) {
     createCards(cardsOnBoard);
 }
 
+// shuffle gameBoard array
+function shuffle(array) {
+    for (let i = array.length-1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random()*array.length);
+
+        let upNext = array[i];
+        array[i] = array[randomIndex];
+        array[randomIndex] = upNext;
+    }
+}
+
 // create & push cards to View from gameBoard Array
 function createCards(array) {
     for (let card in array) {
@@ -126,17 +144,6 @@ function createCards(array) {
 
         // push to board
         document.getElementById('gameBoard').appendChild(newCard);
-    }
-}
-
-// shuffle gameBoard array
-function shuffle(array) {
-    for (let i = array.length-1; i > 0; i--) {
-        let randomIndex = Math.floor(Math.random()*array.length);
-
-        let upNext = array[i];
-        array[i] = array[randomIndex];
-        array[randomIndex] = upNext;
     }
 }
 
@@ -154,7 +161,7 @@ function clearBoard(){
 board.addEventListener('click', (evt) => {
     evt.preventDefault();
     // Thanks to Kenny for the if statement wrapper idea to stop console log error that didn't affect the game but was annoying me
-    if(evt.target.classList.value === 'card back') {
+    if(evt.target.classList.value === 'card back' && inPlay.length < 2) {
         // get array location via data-id as set in createCards function
         const card = evt.target.getAttribute('id');
         // create img and title elements
@@ -245,8 +252,8 @@ function win() {
 function award() {
     // create awards elements
     let award = document.createElement('div');
-    let announcement = document.createElement('h2');
     award.setAttribute('class', 'award winner');
+    let announcement = document.createElement('h2');
     
     // player with most points wins
     if (players[0].score > players[1].score) {
@@ -260,10 +267,10 @@ function award() {
     // append children
     award.appendChild(announcement);
     document.querySelector('main').appendChild(award);
-    setTimeout(announce, 3000);
+    setTimeout(fadeOut, 3000);
 }
 
-function announce() {
+function fadeOut() {
     let award = document.querySelector('.award');
     award.parentNode.removeChild(award);
     // This approach of self removal comes from https://gomakethings.com/removing-an-element-from-the-dom-with-vanilla-js/
@@ -271,4 +278,4 @@ function announce() {
 
 // default start board load
 loadBoard('planets');
-// console.log(cardsOnBoard);
+console.log(cardsOnBoard);

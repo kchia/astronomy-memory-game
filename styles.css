@@ -1,36 +1,38 @@
 body {
     font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
     background: #222222;
     color: #FFFCF1;
     display: grid;
     grid-template-columns: 1fr repeat(4, 2fr) 1fr;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 1fr 7fr 1fr;
     grid-gap: 1rem;
-    place-items: stretch / center;
     margin: 0;
 }
 p {
     font-family: 'Montserrat', sans-serif;
+    text-transform: none;
     margin: 0 0 10px;
 }
-p a {
+a {
     text-decoration: none;
-    color: #FDCB56;
     font-weight: 700;
 }
+p a {
+    color: #FDCB56;
+}
 h1 {
-    text-transform: uppercase;
-    margin: 0.8em;
-    letter-spacing: 1px;
+    margin: .8em 0 0 .8em;
 }
 header {
     grid-column: 1 / span 4;
 }
 .hamburger {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    margin: 20px;
+    right: 2.5em;
+    top: 2.5em;
     z-index: 3;
 }
 .hamburger div {
@@ -58,50 +60,52 @@ header {
 nav {
     grid-column: 5 / span 2;
     grid-row: 1 / span 3;
-    background: #222222;
+    background: inherit;
     z-index: 1;
     display: none;
+    opacity: 1;
     transition-duration: .4s;
     border: 10px solid #FFFCF1;
 }
+nav ul:nth-child(1) {
+    margin: 5em 2em 0;
+}
 nav ul {
     padding: 0;
-    margin: 70px 35px 0;
+    margin: 3em 2em 0;
     text-align: right;
 }
 nav ul li {
     display: block;
 }
 nav ul li a {
-    text-decoration: none;
+    text-transform: capitalize;
     font-variant: small-caps;
     font-size: 1.5em;
-    font-weight: 700;
-    line-height: 2.25em;
-    letter-spacing: .25px;
+    line-height: 2em;
     color: inherit;
 }
-nav ul li a .mini {
-    font-size: 1em;
+.sub-menu {
+    opacity: .8;
 }
 main {
     grid-row: 2 / span 2;
     grid-column: 2 / span 4;
     display: grid;
-    grid-template-rows: 6fr 1fr;
+    grid-template-rows: 10fr 1fr;
     grid-template-columns: 1fr;
 }
 .game-board {
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
     display: grid;
+    grid-gap: 1rem;
     grid-template-columns: repeat(4, 2fr);
     grid-template-rows: repeat(2, 4fr);
 }
 .card {
-    align-self: stretch;
     border: 10px solid #FFFCF1;
-    margin: 12px;
+    padding: 8%;
     text-align: center;
 }
 .back {
@@ -111,7 +115,7 @@ main {
     background-position: center;
 }
 .card img {
-    width: 85%;
+    width: 72%;
     padding: 20% 0 0;
 }
 .score {
@@ -125,21 +129,14 @@ main {
     margin-right: 10%;
 }
 .score h3:nth-child(3) {
-    margin-right: 5%;
-}
-h2 {
-    text-transform: uppercase;
+    margin-right: 0;
 }
 .current-player {
     color: #FDCB56;
 }
-.sub-menu {
-    opacity: .8;
-}
 .award {
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
-    margin: 12px;
     padding: 0 40px;
     background: #222222;
     border: 10px solid #FFFCF1;
@@ -151,4 +148,12 @@ h2 {
     font-size: 2.5em;
     letter-spacing: 2px;
     color: #FDCB56;
+}
+.award a {
+    background: #FFFCF1;
+    color: #222222;
+    padding: 5px 10px;
+    margin: 15px;
+    font-size: .5em;
+    border-radius: 2px;
 }
