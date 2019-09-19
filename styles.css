@@ -137,18 +137,24 @@ main {
 .award {
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
-    padding: 40px;
     background: #222222;
     border: 10px solid #FFFCF1;
     color: #FFFCF1;
     z-index: 2;
     display: none;
 }
-.award.winner {
+.winner {
     text-align: center;
-    padding: 25%;
+    padding: 23%;
     font-size: 2.5em;
     letter-spacing: 2px;
+    display: initial;
+}
+.winner h2 {
+    margin: 0;
+}
+.info{
+    padding: 40px;
 }
 /* awards next action buttons */
 .winner a {

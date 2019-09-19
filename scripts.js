@@ -286,11 +286,11 @@ function award() {
     // append children
     award.appendChild(announcement);
     document.querySelector('main').appendChild(award);
-    setTimeout(fadeOut, 3000);
+    // setTimeout(fadeOut, 3000);
 }
 
 function fadeOut() {
-    let award = document.querySelector('.award');
+    let award = document.querySelector('.winner');
     award.parentNode.removeChild(award);
     // This approach of self removal comes from https://gomakethings.com/removing-an-element-from-the-dom-with-vanilla-js/
 }
