@@ -286,7 +286,7 @@ function award() {
     // append children
     award.appendChild(announcement);
     document.querySelector('main').appendChild(award);
-    // setTimeout(fadeOut, 3000);
+    setTimeout(fadeOut, 3000);
 }
 
 function fadeOut() {
