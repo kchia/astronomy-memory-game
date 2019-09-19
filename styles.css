@@ -19,8 +19,6 @@ p {
 a {
     text-decoration: none;
     font-weight: 700;
-}
-p a {
     color: #FDCB56;
 }
 h1 {
@@ -139,11 +137,12 @@ main {
 .award {
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
-    padding: 0 40px;
+    padding: 40px;
     background: #222222;
     border: 10px solid #FFFCF1;
-    color: #FDCB56;
+    color: #FFFCF1;
     z-index: 2;
+    display: none;
 }
 .award.winner {
     text-align: center;
@@ -159,12 +158,12 @@ main {
     margin: 15px;
     font-size: .5em;
     border-radius: 2px;
+    display: initial;
 }
 .closer {
     float: right;
-    color: #FFFCF1;
+    color: #FDCB56;
     cursor: pointer;
     font-size: 1.5em;
-    margin: 15px 0;
     padding: 10px;
 }

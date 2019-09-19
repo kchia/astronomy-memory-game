@@ -3,6 +3,8 @@ const hamburger = document.querySelector('.hamburger');
 const navigation = document.querySelector('nav');
 const selectGame = document.querySelector('#selectGame');
 const selectSub = document.querySelector('.sub-menu');
+const about = document.getElementById('about');
+const learnMore = document.getElementById('learnMore');
 const board = document.querySelector('#gameBoard');
 
 // gameBoard arrays
@@ -294,30 +296,19 @@ function fadeOut() {
 }
 
 function loadAbout() {
-    // create awards elements
-    let about = document.createElement('div');
-    about.setAttribute('class', 'award');
-    let heading = document.createElement('h2');
-    let reading = document.createElement('p');
-    let closer = document.createElement('a');
-    closer.setAttribute('class', 'closer');
-    closer.innerText = 'X';
-    closer.addEventListener('click', () => {
-        about.parentNode.removeChild(about);
-    })
-
-    heading.innerText = 'About';
-    reading.innerText = `This project was created by Jared Morgan to help encourage more kids (especially his nibblings) to learn science, and to teach himself more JavaScript & CSS. If you'd like to work with him on another awesome project or contribute to this one visit https://github.com/jaredsmorgan/.`
-
-    // append children
-    about.appendChild(heading);
-    about.appendChild(reading);
-    about.appendChild(closer);
-    document.querySelector('main').appendChild(about);
+    about.style.display = 'initial';
+    let closer = about.querySelector('.closer');
+    closer.addEventListener('click', function() {
+        about.style.display = 'none';
+    });
 }
 
 function loadLearnMore() {
-    console.log(`Learn More loaded.`);
+    learnMore.style.display = 'initial';
+    let closer = learnMore.querySelector('.closer');
+    closer.addEventListener('click', function() {
+        learnMore.style.display = 'none';
+    });
 }
 
 // default start board load
