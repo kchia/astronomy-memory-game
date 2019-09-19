@@ -89,6 +89,7 @@ navigation.addEventListener('click', function(evt) { // on click load new board
     clearBoard();
     // load new board
     loadBoard(arraySelector.toLowerCase());
+    openMenu(evt);
 });
 
 function loadBoard(arrayQuery) {
@@ -186,7 +187,6 @@ function checkMatch () {
     if (firstCard === secondCard) {
         // if match iterate point for current player & go again
         document.getElementById(`${players[0].id}`).innerHTML = `${players[0].player}: ${players[0].score+=1}`;
-        console.log('MATCH');
         // check win scenario
         win();
         // change player, could turn this off for more of a challenge
@@ -194,9 +194,8 @@ function checkMatch () {
     // if no match
     } else if (firstCard != secondCard) {
         // and flip back
-        setTimeout(flipBack, 2000); 
+        setTimeout(flipBack, 1000); 
         // Thanks to Kenny for providing W3S starting point for setTimeout review
-        console.log('NO MATCH');
     }
 }
 
@@ -239,17 +238,37 @@ function win() {
     
     // all cards flipped and matched
     if (testArray.length === cardsOnBoard.length) {
-        // player with most points wins
-        if (players[0].score > players[1].score) {
-            console.log(`${players[0].player} WINS!`);
-        } else if (players[1].score > players[0].score) {
-            console.log(`${players[1].player} WINS!`);
-        } else if (players[0].score === players[1].score) {
-            console.log(`It's a tie!`);
-        }
+        award();
     }    
+}
+
+function award() {
+    // create awards elements
+    let award = document.createElement('div');
+    let announcement = document.createElement('h2');
+    award.setAttribute('class', 'award winner');
+    
+    // player with most points wins
+    if (players[0].score > players[1].score) {
+        announcement.innerText = `${players[0].player} WINS!`;
+    } else if (players[1].score > players[0].score) {
+        announcement.innerText = `${players[1].player} WINS!`;
+    } else if (players[0].score === players[1].score) {
+        announcement.innerText = `It's a tie!`;
+    }
+
+    // append children
+    award.appendChild(announcement);
+    document.querySelector('main').appendChild(award);
+    setTimeout(announce, 3000);
+}
+
+function announce() {
+    let award = document.querySelector('.award');
+    award.parentNode.removeChild(award);
+    // This approach of self removal comes from https://gomakethings.com/removing-an-element-from-the-dom-with-vanilla-js/
 }
 
 // default start board load
 loadBoard('planets');
-console.log(cardsOnBoard);
+// console.log(cardsOnBoard);
