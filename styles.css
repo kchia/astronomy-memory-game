@@ -87,6 +87,8 @@ nav ul li a {
 }
 .sub-menu {
     opacity: .8;
+    font-size: .9em;
+    line-height: 1em;
 }
 main {
     grid-row: 2 / span 2;
@@ -140,6 +142,7 @@ main {
     padding: 0 40px;
     background: #222222;
     border: 10px solid #FFFCF1;
+    color: #FDCB56;
     z-index: 2;
 }
 .award.winner {
@@ -147,13 +150,21 @@ main {
     padding: 25%;
     font-size: 2.5em;
     letter-spacing: 2px;
-    color: #FDCB56;
 }
-.award a {
+/* awards next action buttons */
+.winner a {
     background: #FFFCF1;
     color: #222222;
     padding: 5px 10px;
     margin: 15px;
     font-size: .5em;
     border-radius: 2px;
+}
+.closer {
+    float: right;
+    color: #FFFCF1;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin: 15px 0;
+    padding: 10px;
 }

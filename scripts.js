@@ -2,6 +2,7 @@
 const hamburger = document.querySelector('.hamburger');
 const navigation = document.querySelector('nav');
 const selectGame = document.querySelector('#selectGame');
+const selectSub = document.querySelector('.sub-menu');
 const board = document.querySelector('#gameBoard');
 
 // gameBoard arrays
@@ -96,6 +97,50 @@ selectGame.addEventListener('click', function(evt) {
     inPlay = []
 });
 
+// on click load about or learn more
+selectSub.addEventListener('click', function(evt) {
+    evt.preventDefault();
+    // selection criteria based on nav link text
+    arraySelector = evt.target.innerText;
+    
+    if(arraySelector === 'About') {
+        // load about board
+        loadAbout();
+    } else if (arraySelector === 'Learn More') {
+        loadLearnMore();
+    }
+    // switch menu state to closed
+    openMenu(evt);
+});
+
+// flip card
+board.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    // Thanks to Kenny for the if statement wrapper idea to stop console log error that didn't affect the game but was annoying me
+    if(evt.target.classList.value === 'card back' && inPlay.length < 2) {
+        // get array location via data-id as set in createCards function
+        const card = evt.target.getAttribute('id');
+        // create img and title elements
+        let frontImg = document.createElement('img');
+        let frontTitle = document.createElement('h2');
+        // set img and title attributes using data-id from getAttribute^
+        frontImg.setAttribute('src', cardsOnBoard[card].img);
+        frontTitle.innerHTML = cardsOnBoard[card].name;
+        // push new card to inPlay
+        inPlay.push(card);
+        // flip card/change image
+        // remove bg
+        evt.target.classList.remove('back');
+        // add img and title
+        evt.target.appendChild(frontImg);
+        evt.target.appendChild(frontTitle);
+        // check for match
+        if(inPlay.length === 2) {
+            checkMatch();
+        }
+    }
+});
+
 // builds new cardsOnBoard array
 function loadBoard(arrayQuery) {
     // clear previous board
@@ -156,34 +201,6 @@ function clearBoard(){
     // empty gameBoard array
     cardsOnBoard = [];
 }
-
-// flip card
-board.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    // Thanks to Kenny for the if statement wrapper idea to stop console log error that didn't affect the game but was annoying me
-    if(evt.target.classList.value === 'card back' && inPlay.length < 2) {
-        // get array location via data-id as set in createCards function
-        const card = evt.target.getAttribute('id');
-        // create img and title elements
-        let frontImg = document.createElement('img');
-        let frontTitle = document.createElement('h2');
-        // set img and title attributes using data-id from getAttribute^
-        frontImg.setAttribute('src', cardsOnBoard[card].img);
-        frontTitle.innerHTML = cardsOnBoard[card].name;
-        // push new card to inPlay
-        inPlay.push(card);
-        // flip card/change image
-        // remove bg
-        evt.target.classList.remove('back');
-        // add img and title
-        evt.target.appendChild(frontImg);
-        evt.target.appendChild(frontTitle);
-        // check for match
-        if(inPlay.length === 2) {
-            checkMatch();
-        }
-    }
-});
 
 function checkMatch () {
     const firstIndex = inPlay[0];
@@ -274,6 +291,33 @@ function fadeOut() {
     let award = document.querySelector('.award');
     award.parentNode.removeChild(award);
     // This approach of self removal comes from https://gomakethings.com/removing-an-element-from-the-dom-with-vanilla-js/
+}
+
+function loadAbout() {
+    // create awards elements
+    let about = document.createElement('div');
+    about.setAttribute('class', 'award');
+    let heading = document.createElement('h2');
+    let reading = document.createElement('p');
+    let closer = document.createElement('a');
+    closer.setAttribute('class', 'closer');
+    closer.innerText = 'X';
+    closer.addEventListener('click', () => {
+        about.parentNode.removeChild(about);
+    })
+
+    heading.innerText = 'About';
+    reading.innerText = `This project was created by Jared Morgan to help encourage more kids (especially his nibblings) to learn science, and to teach himself more JavaScript & CSS. If you'd like to work with him on another awesome project or contribute to this one visit https://github.com/jaredsmorgan/.`
+
+    // append children
+    about.appendChild(heading);
+    about.appendChild(reading);
+    about.appendChild(closer);
+    document.querySelector('main').appendChild(about);
+}
+
+function loadLearnMore() {
+    console.log(`Learn More loaded.`);
 }
 
 // default start board load
