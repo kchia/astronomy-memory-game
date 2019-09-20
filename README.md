@@ -21,7 +21,7 @@ Play the game [here](https://jaredsmorgan.github.io/astronomy-memory-game/).
 * HTML5 & CSS3
 
 ## Project Plan
-For more insight into the project plan and user stories please see the [PDF]()
+For more insight into the project plan and user stories please see the [PDF](https://github.com/jaredsmorgan/astronomy-memory-game/blob/master/OOTW-proj-plan.pdf).
 
 ## Progress
 Bronze
@@ -33,15 +33,16 @@ Silver
 * [x] Menu animations
 * [x] Player score and current player updates
 * [x] About and Learn More resources
+* [ ] Reset & Play Again options
 
 Gold
 * [ ] Refactor code for efficiency
 * [ ] Mobile and Tablet views
-* [ ] Improve accessibility
 * [ ] Additional sets
 * [ ] Additional animation for card flips and announcements
+* [ ] Additional facts popup when user gets a match
 
 
 ## Contribute
-* Issue Tracker[https://github.com/jaredsmorgan/astronomy-memory-game/issues](https://github.com/jaredsmorgan/astronomy-memory-game/issues)
-* Source Code [https://github.com/jaredsmorgan/astronomy-memory-game](https://github.com/jaredsmorgan/astronomy-memory-game)
+* Issue Tracker: [https://github.com/jaredsmorgan/astronomy-memory-game/issues](https://github.com/jaredsmorgan/astronomy-memory-game/issues)
+* Source Code: [https://github.com/jaredsmorgan/astronomy-memory-game](https://github.com/jaredsmorgan/astronomy-memory-game)
