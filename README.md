@@ -1,7 +1,47 @@
 # Out of this World Memory Game
-Out of this World Memory Game is an easy to play memory game designed for all ages, and especially for kids ages six to twelve. It teaches basic astronomy terms like planets (and other objects visible to the naked eye) and constellations to encourage STEM learning for fun.
+Out of this World Memory Game is an easy to play memory game designed for all ages. 
 
-# What You Need to Play
-All you need is a computer with a screen or monitor. The game is not yet ready for mobile or tablet, but hope to make it available on all devices in the future so keep your eyes on the sky.
+## Teach Kids that STEM is Awesome
+Learn basic astronomy like planets, constellations, and other far out there fun to encourage STEM learning. Designed especially for kids ages six to twelve.
 
-![](OOTW_gifted.gif)
+## What You Need to Play
+All you need is a computer with a screen or monitor. The game is not yet ready for mobile or tablet, but we hope to make it available on all devices in the future so keep your eyes on the sky.
+
+Play the game [here](https://jaredsmorgan.github.io/astronomy-memory-game/).
+
+## Features
+* Users can play a game of memory using sets that include: planets (includes sun & moon) and stars (constellations) with more on the way soon.
+* Users can find some links to other helpful astronomical information for kids.
+* Users can learn about the creator of the game.
+
+![User clicks on several cards revealing Mars, Venus, and Mars until they get a match.](OOTW_gifted.gif)
+
+## Technologies Used
+* Vanilla JavaScript ES6
+* HTML5 & CSS3
+
+## Project Plan
+For more insight into the project plan and user stories please see the [PDF]()
+
+## Progress
+Bronze
+* [x] HTML Structure
+* [x] CSS Layout
+* [x] JavaScript to power basic card reveal and board selection
+
+Silver
+* [x] Menu animations
+* [x] Player score and current player updates
+* [x] About and Learn More resources
+
+Gold
+* [ ] Refactor code for efficiency
+* [ ] Mobile and Tablet views
+* [ ] Improve accessibility
+* [ ] Additional sets
+* [ ] Additional animation for card flips and announcements
+
+
+## Contribute
+* Issue Tracker[https://github.com/jaredsmorgan/astronomy-memory-game/issues](https://github.com/jaredsmorgan/astronomy-memory-game/issues)
+* Source Code [https://github.com/jaredsmorgan/astronomy-memory-game](https://github.com/jaredsmorgan/astronomy-memory-game)
