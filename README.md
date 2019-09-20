@@ -24,18 +24,18 @@ Play the game [here](https://jaredsmorgan.github.io/astronomy-memory-game/).
 For more insight into the project plan and user stories please see the [PDF](https://github.com/jaredsmorgan/astronomy-memory-game/blob/master/OOTW-proj-plan.pdf).
 
 ## Progress
-Bronze
+__Bronze__
 * [x] HTML Structure
 * [x] CSS Layout
 * [x] JavaScript to power basic card reveal and board selection
 
-Silver
+__Silver__
 * [x] Menu animations
 * [x] Player score and current player updates
 * [x] About and Learn More resources
 * [ ] Reset & Play Again options
 
-Gold
+__Gold__
 * [ ] Refactor code for efficiency
 * [ ] Mobile and Tablet views
 * [ ] Additional sets

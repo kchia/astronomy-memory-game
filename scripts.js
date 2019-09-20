@@ -313,4 +313,4 @@ function loadLearnMore() {
 
 // default start board load
 loadBoard('planets');
-console.log(cardsOnBoard);
+// console.log(cardsOnBoard);
